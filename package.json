@@ -1,0 +1,31 @@
+{
+  "name": "homebridge-prismatik",
+  "version": "1.1.0",
+  "description": "Prismatik (lightpack) plugin for homebridge: https://github.com/nfarina/homebridge",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/damianromanowski/homebridge-prismatik.git"
+  },
+  "keywords": [
+    "homebridge-plugin"
+  ],
+  "author": "Damian Romanowski <damian.m.romanowski@gmail.com>",
+  "contributors": [
+    {
+      "name": "Ben Dodson"
+    }
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/damianromanowski/homebridge-prismatik/issues"
+  },
+  "homepage": "https://github.com/damianromanowski/homebridge-prismatik#readme",
+  "engines": {
+    "node": ">=0.12.0",
+    "homebridge": ">=0.2.13"
+  },
+  "dependencies": {
+    "debug": "^2.2.0"
+  }
+}
