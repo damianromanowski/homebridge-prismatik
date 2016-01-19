@@ -8,9 +8,10 @@ module.exports = {
 }
 
 function PrismatikAccessory(log, config) {
-  this.log = log;
+  this.log    = log;
 
-  // url info
+  this.host   = config['host'];
+  this.port   = config['port'];
   this.apikey = config["apikey"];
 }
 
@@ -20,8 +21,8 @@ PrismatikAccessory.prototype = {
     var url;
 
     var options = {
-       host: "127.0.0.1",  // Localhost
-       port: 3636,          // Default Prismatik port
+       host: this.host,
+       port: this.port,
        apikey: this.apikey
     };
 
@@ -62,8 +63,8 @@ PrismatikAccessory.prototype = {
     this.log("Setting brightness to %s", level);
 
     var options = {
-       host: "127.0.0.1",  // Localhost
-       port: 3636,          // Default Prismatik port
+       host: this.host,
+       port: this.port,
        apikey: this.apikey
     };
 

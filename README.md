@@ -6,6 +6,8 @@ This is a very basic plugin to enable Prismatik support for Homebridge. It allow
         {
             "accessory": "Prismatik",
             "name": "Computer",
+            "host": "x.x.x.x",
+            "port": 3636,
             "apikey": "key"
         }
     ]
