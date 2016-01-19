@@ -1,6 +1,8 @@
-var Service = require("HAP-NodeJS").Service;
+var Service        = require("HAP-NodeJS").Service;
 var Characteristic = require("HAP-NodeJS").Characteristic;
-var prismatik = require("./lib/prismatik-client");
+var prismatik      = require("./lib/prismatik-client");
+
+var debug          = require("debug")('Prismatik');
 
 module.exports = {
   accessory: PrismatikAccessory
