@@ -26,7 +26,6 @@ function PrismatikAccessory(log, config) {
 PrismatikAccessory.prototype = {
 
   setPowerState: function(powerOn, callback) {
-    var url;
 
     var options = {
        host: this.host,
