@@ -1,5 +1,4 @@
 var color          = require('color');
-var debug          = require("debug")('Prismatik');
 var prismatik      = require("./lib/prismatik-client");
 
 module.exports = function (homebridge)
