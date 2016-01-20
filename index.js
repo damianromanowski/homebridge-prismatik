@@ -1,10 +1,18 @@
-var Service        = require("HAP-NodeJS").Service;
-var Characteristic = require("HAP-NodeJS").Characteristic;
 var debug          = require("debug")('Prismatik');
 var prismatik      = require("./lib/prismatik-client");
 
-module.exports = {
-  accessory: PrismatikAccessory
+module.exports = function (homebridge)
+{
+  if(typeof homebridge !== "undefined")
+  {
+    Service         = homebridge.hap.Service;
+    Characteristic  = homebridge.hap.Characteristic;
+    Accessory       = homebridge.hap.Accessory;
+
+    console.log("Prismatik initializing");
+  }
+
+  homebridge.registerAccessory("homebridge-prismatik", "Prismatik", PrismatikAccessory);
 }
 
 function PrismatikAccessory(log, config) {
@@ -117,8 +125,7 @@ PrismatikAccessory.prototype = {
     lightbulbService
       .addCharacteristic(new Characteristic.Brightness())
       .on('set', this.setBrightness.bind(this));
-    
-    
+        
     return [informationService, lightbulbService];
   }
 };
