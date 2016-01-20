@@ -22,6 +22,10 @@ function PrismatikAccessory(log, config) {
   this.host   = config['host'];
   this.port   = config['port'];
   this.apikey = config["apikey"];
+
+  this.hue = 0;
+  this.sat = 100;
+  this.bri = 50;
 }
 
 PrismatikAccessory.prototype = {
