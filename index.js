@@ -127,6 +127,41 @@ PrismatikAccessory.prototype = {
 
   },
 
+  setHue: function(hue, callback) {
+
+    this.log("Setting hue to %s", hue);
+    this.hue = hue;
+
+    var hsl = color({h: Math.round(this.hue), s: Math.round(this.sat), l: Math.round(this.bri)});
+
+    var options = {
+       host: this.host,
+       port: this.port,
+       apikey: this.apikey
+    };
+
+    prismatik.connect(function(isConnected) {
+       if (isConnected) {
+          prismatik.lock(function(success) {
+             if (success) {
+                prismatik.setColorToAll(hsl.red(), hsl.green(), hsl.blue(), function() {
+                  callback();
+                }.bind(this));
+             } else {
+                this.log("Could not lock, something else has already connected.");
+                prismatik.disconnect();
+                callback();
+             }
+          }.bind(this));
+       } else {
+          this.log("Failed to connect to Prismatik");
+          callback();
+       }
+    }.bind(this), options);
+
+  },
+
+
   
   identify: function(callback) {
     this.log("Identify requested!");
@@ -154,6 +189,10 @@ PrismatikAccessory.prototype = {
     lightbulbService
       .addCharacteristic(new Characteristic.Brightness())
       .on('set', this.setBrightness.bind(this));
+
+    lightbulbService
+      .addCharacteristic(new Characteristic.Hue())
+      .on('set', this.setHue.bind(this));
         
     return [informationService, lightbulbService];
   }
