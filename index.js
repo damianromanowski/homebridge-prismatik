@@ -26,6 +26,31 @@ function PrismatikAccessory(log, config) {
 
 PrismatikAccessory.prototype = {
 
+  getPowerState: function(callback) {
+
+    var options = {
+       host: this.host,
+       port: this.port,
+       apikey: this.apikey
+    };
+
+    prismatik.connect(function(isConnected) {
+      if (isConnected) {
+        prismatik.getStatus(function(power) {
+          this.log("Getting power status: %s", power);
+          callback(null, power);
+
+          prismatik.disconnect();
+        }.bind(this));
+      } else {
+        this.log("Failed to connect to Prismatik");
+        callback(null, false);
+      }
+    }.bind(this), options);
+
+
+  },
+
   setPowerState: function(powerOn, callback) {
 
     var options = {
@@ -119,8 +144,8 @@ PrismatikAccessory.prototype = {
     
     lightbulbService
       .getCharacteristic(Characteristic.On)
-      .on('set', this.setPowerState.bind(this));
-    
+      .on('set', this.setPowerState.bind(this))
+      .on('get', this.getPowerState.bind(this));
     
     lightbulbService
       .addCharacteristic(new Characteristic.Brightness())
