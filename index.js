@@ -108,6 +108,14 @@ PrismatikAccessory.prototype =
         }.bind(this), options);
     },
 
+    getBrightness: function(callback)
+    {
+        var brightness = 100;
+
+        this.log("Getting brightness status: %s", brightness);
+        callback(null, brightness);
+    },
+
     setBrightness: function(level, callback)
     {
         this.log("Setting brightness to %s", level);
@@ -265,7 +273,8 @@ PrismatikAccessory.prototype =
 
         lightbulbService
             .addCharacteristic(Characteristic.Brightness)
-            .on('set', this.setBrightness.bind(this));
+            .on('set', this.setBrightness.bind(this))
+            .on('get', this.getBrightness.bind(this));
 
         lightbulbService
             .addCharacteristic(Characteristic.Hue)
