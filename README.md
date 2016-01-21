@@ -24,6 +24,7 @@ You will need to go to the _Experimental_ tab in the Prismatik software, enable 
 ## Known issues
 
 * The Prismatik API sometimes freezes in a _busy_ state and requires a restart, not sure the reason behind this yet.
+* The Prismatik API does not provide a way to retrieve the current brightneess level. I don't see a way of getting around this.
 * Hue and saturation values are set to the default values of _0_ and _100_ respectively until i figure out a way to retrieve a proper value. But since the LED's can be set to individual colors, this is somewhat problematic.
 
 
