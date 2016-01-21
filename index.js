@@ -250,6 +250,7 @@ PrismatikAccessory.prototype =
 
     getServices: function()
     {
+        var lightbulbService   = new Service.Lightbulb();
         var informationService = new Service.AccessoryInformation();
 
         informationService
@@ -257,23 +258,21 @@ PrismatikAccessory.prototype =
             .setCharacteristic(Characteristic.Model, "Prismatik Model")
             .setCharacteristic(Characteristic.SerialNumber, "Prismatik Serial Number");
 
-        var lightbulbService = new Service.Lightbulb();
-
         lightbulbService
             .getCharacteristic(Characteristic.On)
             .on('set', this.setPowerState.bind(this))
             .on('get', this.getPowerState.bind(this));
 
         lightbulbService
-            .addCharacteristic(new Characteristic.Brightness())
+            .addCharacteristic(Characteristic.Brightness)
             .on('set', this.setBrightness.bind(this));
 
         lightbulbService
-            .addCharacteristic(new Characteristic.Hue())
+            .addCharacteristic(Characteristic.Hue)
             .on('set', this.setHue.bind(this));
 
         lightbulbService
-            .addCharacteristic(new Characteristic.Saturation())
+            .addCharacteristic(Characteristic.Saturation)
             .on('set', this.setSaturation.bind(this));
 
         return [informationService, lightbulbService];
