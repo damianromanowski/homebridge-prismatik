@@ -151,9 +151,14 @@ PrismatikAccessory.prototype =
     setHue: function(hue, callback)
     {
         this.log("Setting hue to %s", hue);
-        this.hue = hue;
+        this.hue = Math.round(hue);
 
-        var hsl = color({h: Math.round(this.hue), s: Math.round(this.sat), l: Math.round(this.bri)});
+        var hsl = color(
+        {
+            h: this.hue,
+            s: this.sat,
+            l: this.bri
+        });
 
         var options =
         {
@@ -194,9 +199,14 @@ PrismatikAccessory.prototype =
     setSaturation: function(saturation, callback)
     {
         this.log("Setting saturation to %s", saturation);
-        this.sat = saturation;
+        this.sat = Math.round(saturation);
 
-        var hsl = color({h: Math.round(this.hue), s: Math.round(this.sat), l: Math.round(this.bri)});
+        var hsl = color(
+        {
+            h: this.hue,
+            s: this.sat,
+            l: this.bri
+        });
 
         var options =
         {
