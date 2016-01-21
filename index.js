@@ -256,7 +256,7 @@ PrismatikAccessory.prototype =
         informationService
             .setCharacteristic(Characteristic.Manufacturer, "Prismatik Manufacturer")
             .setCharacteristic(Characteristic.Model, "Prismatik Model")
-            .setCharacteristic(Characteristic.SerialNumber, "Prismatik Serial Number");
+            .setCharacteristic(Characteristic.SerialNumber, this.host);
 
         lightbulbService
             .getCharacteristic(Characteristic.On)
