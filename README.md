@@ -2,6 +2,16 @@
 
 This is a basic plugin to enable Prismatik support for Homebridge. It allows you to turn Prismatik on and off, and adjust the brightness, hue and saturation levels.
 
+## Installation
+
+1. Install homebridge using: 
+  * `npm install -g homebridge`
+
+2. Install this plugin using:
+  * `npm install -g homebridge-prismatik`
+
+3. Update your configuration file. See the sample below.
+
 ## Configuration
 
 To use with Homebridge, you'll need to update your config file like so:
@@ -16,7 +26,7 @@ To use with Homebridge, you'll need to update your config file like so:
         }
     ]
 
-**Note:** If `host` and `port` are not specified, _localhost (127.0.0.1)_ and _3636_ will be used as the default values.
+**Note:** If `host` and `port` are not specified, `localhost (127.0.0.1)` and `3636` will be used as the default values.
 
 You will need to go to the _Experimental_ tab in the Prismatik software, enable the API server, and set the Key (the code above assumes a Key of "key")
 
