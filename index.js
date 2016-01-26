@@ -17,27 +17,24 @@ module.exports = function (homebridge)
 
 function PrismatikAccessory(log, config)
 {
-    this.log    = log;
+    this.log = log;
 
-    this.host   = config['host'];
-    this.port   = config['port'];
-    this.apikey = config["apikey"];
+    this.hue = 0;
+    this.sat = 100;
+    this.bri = 50;
 
-    this.hue    = 0;
-    this.sat    = 100;
-    this.bri    = 50;
+    this.options =
+    {
+        host:   config['host'],
+        port:   config['port'],
+        apikey: config["apikey"]
+    };
 }
 
 PrismatikAccessory.prototype =
 {
     getPowerState: function(callback)
     {
-        var options = {
-            host: this.host,
-            port: this.port,
-            apikey: this.apikey
-        };
-
         prismatik.connect(function(isConnected)
         {
             if (isConnected)
@@ -55,18 +52,11 @@ PrismatikAccessory.prototype =
                 this.log("Failed to connect to Prismatik");
                 callback(null, false);
             }
-        }.bind(this), options);
+        }.bind(this), this.options);
     },
 
     setPowerState: function(powerOn, callback)
     {
-        var options =
-        {
-            host: this.host,
-            port: this.port,
-            apikey: this.apikey
-        };
-
         prismatik.connect(function(isConnected)
         {
             if (isConnected)
@@ -101,7 +91,7 @@ PrismatikAccessory.prototype =
             {
                 this.log("Failed to connect to Prismatik");
             }
-        }.bind(this), options);
+        }.bind(this), this.options);
 
         callback();
     },
@@ -117,13 +107,6 @@ PrismatikAccessory.prototype =
     setBrightness: function(level, callback)
     {
         this.log("Setting brightness to %s", level);
-
-        var options =
-        {
-            host: this.host,
-            port: this.port,
-            apikey: this.apikey
-        };
 
         prismatik.connect(function(isConnected)
         {
@@ -148,7 +131,7 @@ PrismatikAccessory.prototype =
             {
                 this.log("Failed to connect to Prismatik");
             }
-        }.bind(this), options);
+        }.bind(this), this.options);
 
         callback();
     },
@@ -164,13 +147,6 @@ PrismatikAccessory.prototype =
             s: this.sat,
             l: this.bri
         });
-
-        var options =
-        {
-            host: this.host,
-            port: this.port,
-            apikey: this.apikey
-        };
 
         prismatik.connect(function(isConnected)
         {
@@ -195,7 +171,7 @@ PrismatikAccessory.prototype =
             {
                 this.log("Failed to connect to Prismatik");
             }
-        }.bind(this), options);
+        }.bind(this), this.options);
 
         callback();
     },
@@ -220,13 +196,6 @@ PrismatikAccessory.prototype =
             l: this.bri
         });
 
-        var options =
-        {
-            host: this.host,
-            port: this.port,
-            apikey: this.apikey
-        };
-
         prismatik.connect(function(isConnected)
         {
             if (isConnected)
@@ -248,7 +217,7 @@ PrismatikAccessory.prototype =
             } else {
                 this.log("Failed to connect to Prismatik");
             }
-        }.bind(this), options);
+        }.bind(this), this.options);
 
         callback();
     },
