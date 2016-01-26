@@ -200,6 +200,14 @@ PrismatikAccessory.prototype =
         callback();
     },
 
+    getSaturation: function(callback)
+    {
+        var saturation = 100;
+
+        this.log("Getting saturation status: %s", saturation);
+        callback(null, saturation);
+    },
+
     setSaturation: function(saturation, callback)
     {
         this.log("Setting saturation to %s", saturation);
@@ -277,7 +285,8 @@ PrismatikAccessory.prototype =
 
         lightbulbService
             .addCharacteristic(Characteristic.Saturation)
-            .on('set', this.setSaturation.bind(this));
+            .on('set', this.setSaturation.bind(this))
+            .on('get', this.getSaturation.bind(this));
 
         return [informationService, lightbulbService];
     }
