@@ -80,7 +80,6 @@ PrismatikAccessory.prototype =
                             prismatik.turnOn(function()
                             {
                                 this.log("Turning on!");
-                                callback();
                             }.bind(this));
                         }
                         else
@@ -88,7 +87,6 @@ PrismatikAccessory.prototype =
                             prismatik.turnOff(function()
                             {
                                 this.log("Turning off!");
-                                callback();
                             }.bind(this));
                         }
                     }
@@ -96,16 +94,16 @@ PrismatikAccessory.prototype =
                     {
                         this.log("Could not lock, something else has already connected.");
                         prismatik.disconnect();
-                        callback();
                     }
                 }.bind(this));
             }
             else
             {
                 this.log("Failed to connect to Prismatik");
-                callback();
             }
         }.bind(this), options);
+
+        callback();
     },
 
     getBrightness: function(callback)
@@ -137,23 +135,22 @@ PrismatikAccessory.prototype =
                     {
                         prismatik.setBrightness(level, function()
                         {
-                            callback();
                         }.bind(this));
                     }
                     else
                     {
                         this.log("Could not lock, something else has already connected.");
                         prismatik.disconnect();
-                        callback();
                     }
                 }.bind(this));
             }
             else
             {
                 this.log("Failed to connect to Prismatik");
-                callback();
             }
         }.bind(this), options);
+
+        callback();
     },
 
     setHue: function(hue, callback)
@@ -185,23 +182,22 @@ PrismatikAccessory.prototype =
                     {
                         prismatik.setColorToAll(hsl.red(), hsl.green(), hsl.blue(), function()
                         {
-                            callback();
                         }.bind(this));
                     }
                     else
                     {
                         this.log("Could not lock, something else has already connected.");
                         prismatik.disconnect();
-                        callback();
                     }
                 }.bind(this));
             }
             else
             {
                 this.log("Failed to connect to Prismatik");
-                callback();
             }
         }.bind(this), options);
+
+        callback();
     },
 
     setSaturation: function(saturation, callback)
@@ -233,21 +229,20 @@ PrismatikAccessory.prototype =
                     {
                         prismatik.setColorToAll(hsl.red(), hsl.green(), hsl.blue(), function()
                         {
-                            callback();
                         }.bind(this));
                     }
                     else
                     {
                         this.log("Could not lock, something else has already connected.");
                         prismatik.disconnect();
-                        callback();
                     }
                 }.bind(this));
             } else {
                 this.log("Failed to connect to Prismatik");
-                callback();
             }
         }.bind(this), options);
+
+        callback();
     },
 
     identify: function(callback)
